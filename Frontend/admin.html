@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin — CareerPath AI</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--text:#181a2a;--muted:#747b90;--line:#e7e9f1;--p:#6959e8;--p2:#5142c9;--dark:#171632}
+*{box-sizing:border-box}body{margin:0;font:14px Inter,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text)}
+.hidden{display:none!important}
+#loginView{min-height:100vh;display:grid;place-items:center;background:linear-gradient(135deg,#171632,#30296d 55%,#6859e8)}
+.box{background:#fff;padding:32px;border-radius:18px;width:min(380px,92vw)}
+.box h2{margin:0 0 4px}.sub{color:var(--muted);font-size:12px;margin:0 0 14px}
+label{display:block;font-size:11px;font-weight:800;margin:12px 0 6px}
+input,textarea,select{width:100%;padding:11px;border:1px solid var(--line);border-radius:10px;background:#fbfbfe;font:inherit}
+input:focus,textarea:focus,select:focus{outline:2px solid #8175ef55;border-color:#8175ef}
+textarea{min-height:80px}
+.btn{border:0;border-radius:10px;padding:10px 14px;font-weight:800;font-size:12px;cursor:pointer;background:#f0efff;color:#5951dc}
+.btn.p{color:#fff;background:linear-gradient(135deg,var(--p),var(--p2))}
+.btn.d{background:#fff0f3;color:#b62c48}.btn.g{background:#ebfbf5;color:#16835f}
+.box .btn{width:100%;margin-top:16px}
+.err{color:#b62c48;font-size:12px;margin-top:10px}
+#appView{display:grid;grid-template-columns:230px 1fr;min-height:100vh}
+aside{background:var(--dark);color:#fff;padding:22px 14px}
+.logo{font-weight:900;font-size:18px;margin:0 8px 4px}.logo span{color:#a69cff}
+.tag{font-size:11px;color:#9b98c4;margin:0 8px 20px}
+aside button{display:block;width:100%;text-align:left;background:0;border:0;color:#c8c6e6;padding:11px 12px;border-radius:10px;font:inherit;cursor:pointer}
+aside button.on,aside button:hover{background:#ffffff18;color:#fff}
+main{padding:28px;overflow:auto}
+.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;gap:10px}.head h2{margin:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:18px}
+.stat,.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.stat b{font-size:28px;display:block}.stat span{color:var(--muted);font-size:12px}
+.panel h3{margin:0 0 14px;font-size:14px}
+table{width:100%;border-collapse:collapse}
+th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line);font-size:13px;vertical-align:top}
+th{color:var(--muted);font-size:11px;font-weight:700}
+.wrap{overflow:auto}
+.bars{display:flex;gap:10px;align-items:flex-end;height:150px}
+.bars div{flex:1;text-align:center;font-size:11px;color:var(--muted)}
+.bars i{display:block;background:var(--p);border-radius:6px 6px 0 0;min-height:3px;margin-bottom:4px}
+.badge{padding:3px 9px;border-radius:20px;font-size:11px;font-weight:800;background:#f3f3f8}
+.badge.Approved{background:#ebfbf5;color:#16835f}.badge.Rejected{background:#fff0f3;color:#b62c48}.badge.Pending{background:#fff7e6;color:#a86b00}
+#modal{position:fixed;inset:0;background:#0007;display:grid;place-items:center;z-index:9}
+.mbox{background:#fff;border-radius:16px;padding:24px;width:min(480px,94vw);max-height:90vh;overflow:auto}
+.mbox h3{margin:0 0 6px}.chk{display:flex;gap:8px;align-items:center}.chk input{width:auto}
+.toast{position:fixed;right:20px;bottom:20px;background:#191b2e;color:#fff;padding:12px 16px;border-radius:10px;font-size:12px;z-index:99}
+@media(max-width:760px){#appView{grid-template-columns:1fr}aside{display:flex;flex-wrap:wrap;gap:4px}main{padding:16px}}
+</style>
+</head>
+<body>
+<div id="loginView">
+  <form class="box" id="loginForm">
+    <div class="logo" style="color:#171632;margin:0 0 14px">CareerPath <span style="color:#6959e8">AI</span></div>
+    <h2>Admin sign in</h2>
+    <p class="sub">Manage students, mentors, courses and colleges.</p>
+    <label for="em">Admin email</label><input id="em" type="email" required autocomplete="username">
+    <label for="pw">Password</label><input id="pw" type="password" required autocomplete="current-password">
+    <div id="err" class="err"></div>
+    <button class="btn p">Sign in</button>
+  </form>
+</div>
+
+<div id="appView" class="hidden">
+  <aside>
+    <div class="logo">CareerPath <span>AI</span></div>
+    <div class="tag">Admin portal</div>
+    <div id="nav"></div>
+    <button data-act="logout" style="margin-top:18px">Log out</button>
+  </aside>
+  <main id="content"></main>
+</div>
+
+<div id="modal" class="hidden"></div>
+<script src="js/admin.js"></script>
+</body>
+</html>

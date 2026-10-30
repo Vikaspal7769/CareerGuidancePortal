@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",()=>{if(!location.pathname.endsWith("notifications.html"))return;api("/api/notifications").then(a=>{document.querySelector("#notificationsContent").innerHTML=a.length?a.map(x=>`<article class="card"><h4>${x.title}</h4><p class="muted">${x.message}</p></article>`).join(""):'<div class="empty">No notifications yet.</div>'})});

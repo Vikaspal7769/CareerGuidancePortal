@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CareerPath AI</title>
+<link rel="stylesheet" href="css/style.css">
+<script>
+if(location.protocol==="file:") location.replace("http://localhost:5050/");
+</script>
+</head>
+<body>
+<div id="auth" class="auth">
+<section class="auth-left">
+<div class="logo">CareerPath <span>AI</span></div>
+<div class="auth-copy"><div class="eyebrow">SMART CAREER GUIDANCE</div><h1>Build a career that fits you.</h1><p>Discover career paths, courses, colleges and mentors through one personalized dashboard.</p><div class="pills"><span>AI Career Match</span><span>Courses</span><span>Colleges</span><span>Mentors</span></div></div>
+<small>Personalized guidance • Secure account • Smart recommendations</small>
+</section>
+<section class="auth-right"><div class="auth-box">
+<div class="eyebrow">CAREERPATH AI</div><h2 id="authTitle">Welcome back</h2><p id="authSub">Sign in to continue your personalized career journey.</p>
+<div id="authMsg" class="msg hidden"></div>
+<form id="loginForm"><div class="field"><label>Email</label><input id="loginEmail" type="email" required placeholder="you@example.com"></div><div class="field"><label>Password</label><input id="loginPassword" type="password" required placeholder="••••••••"></div><button class="btn btn-primary">Sign in</button><div class="switch">New here? <a id="loginSwitch">Create account</a></div></form>
+<form id="registerForm" class="hidden"><div class="field"><label>Full name</label><input id="regName" required placeholder="Your name"></div><div class="field"><label>Email</label><input id="regEmail" type="email" required placeholder="you@example.com"></div><div class="field"><label>Password</label><input id="regPassword" type="password" minlength="6" required placeholder="Minimum 6 characters"></div><button class="btn btn-primary">Create account</button><div class="switch">Already have an account? <a id="registerSwitch">Sign in</a></div></form>
+</div></section>
+</div>
+
+<div id="app" class="app hidden">
+<aside class="side"><div class="logo">CareerPath <span>AI</span></div><div class="mini"><div class="avatar" id="avatar">U</div><div><strong id="userName">Student</strong><small>Career Explorer</small></div></div>
+<nav class="nav">
+<button data-section="dashboard" class="active"><span>⌂</span>Dashboard</button>
+<button data-section="profile"><span>◉</span>My Profile</button>
+<button data-section="careers"><span>✦</span>AI Careers</button>
+<button data-section="courses"><span>▣</span>Courses</button>
+<button data-section="colleges"><span>🎓</span>Colleges</button>
+<button data-section="mentors"><span>♙</span>Mentors</button>
+<button data-section="notifications"><span>♢</span>Notifications</button>
+</nav><button id="logout" class="btn btn-light logout">Log out</button></aside>
+<main class="main"><header class="top"><div><small>CAREER GUIDANCE PORTAL</small><h2 id="pageTitle">Dashboard</h2></div><div class="avatar" id="topAvatar">CP</div></header><div class="content">
+<section id="section-dashboard" class="section"><div class="hero"><div><div class="eyebrow">YOUR NEXT STEP</div><h1>Welcome, <span id="welcomeName">there</span>.</h1><p id="profileHint">Complete your profile for better AI matches.</p><button class="btn btn-light" onclick="nav('careers')">Explore careers</button></div><div class="orb"><div>✦</div></div></div>
+<div class="stats"><div class="stat"><small>Profile completion</small><strong id="completion">0%</strong><div style="height:5px;background:#eee;border-radius:5px"><i id="completionBar" style="display:block;width:0;height:100%;background:#6959e8;border-radius:5px"></i></div></div><div class="stat"><small>Career paths</small><strong>AI</strong><small>Personalized</small></div><div class="stat"><small>Learning</small><strong>5+</strong><small>Courses available</small></div><div class="stat"><small>Mentors</small><strong>3</strong><small>Experts available</small></div></div>
+<div class="section-title"><h3>What you can explore</h3></div><div class="grid"><article class="card"><div class="icon">✦</div><h4>AI Career Match</h4><p class="muted">Get career recommendations based on your skills, interests and goals.</p><button class="btn btn-light" onclick="nav('careers')">Explore</button></article><article class="card"><div class="icon">📚</div><h4>Courses</h4><p class="muted">Find practical courses to build the skills your target career needs.</p><button class="btn btn-light" onclick="nav('courses')">Browse</button></article><article class="card"><div class="icon">♙</div><h4>Mentors</h4><p class="muted">Connect with professionals for guidance and career conversations.</p><button class="btn btn-light" onclick="nav('mentors')">Meet mentors</button></article></div></section>
+
+<section id="section-profile" class="section hidden"><div class="page-title"><h1>My Profile</h1><p>Keep your career profile updated for better recommendations.</p></div><form id="profileForm" class="panel form"><div class="form-grid">
+<div class="field"><label>Name</label><input id="p_name"></div><div class="field"><label>Education</label><input id="p_education"></div><div class="field"><label>College</label><input id="p_college"></div><div class="field"><label>Preferred location</label><input id="p_preferredLocation"></div><div class="field full"><label>Skills</label><textarea id="p_skills" rows="3" placeholder="Python, Java, SQL..."></textarea></div><div class="field full"><label>Interests</label><textarea id="p_interests" rows="3"></textarea></div><div class="field full"><label>Career goal</label><textarea id="p_careerGoal" rows="3"></textarea></div></div><button class="btn btn-primary">Save profile</button></form></section>
+
+<section id="section-careers" class="section hidden"><div class="page-title"><h1>AI Career Match</h1><p>Recommendations generated from your profile.</p></div><div id="careerGrid" class="grid"></div></section>
+<section id="section-courses" class="section hidden"><div class="page-title"><h1>Courses</h1><p>Learning paths to help you grow.</p></div><div id="courseGrid" class="grid"></div></section>
+<section id="section-colleges" class="section hidden"><div class="page-title"><h1>Colleges</h1><p>Explore institutions and programs.</p></div><div id="collegeGrid" class="grid"></div></section>
+<section id="section-mentors" class="section hidden"><div class="page-title"><h1>Mentors</h1><p>Connect with available career professionals.</p></div><div id="mentorGrid" class="grid"></div></section>
+<section id="section-notifications" class="section hidden"><div class="page-title"><h1>Notifications</h1><p>Your latest account and mentor updates.</p></div><div id="notificationList" class="grid"></div></section>
+</div></main></div>
+<script src="js/api.js"></script><script src="js/app.js"></script>
+</body></html>
